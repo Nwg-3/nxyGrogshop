@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box{
+            /* background-color: ''; */
+            width: 300px;
+            height: 300px;
+            /* margin-top: 100px; */
+            
+            /* margin: auto 100px; */
+        }
+        p{
+            margin: 0px;
+            height: 60px;
+            /* text-align: center; */
+            line-height: 60px;
+            color: red;
+            font-size: 30px;
+            /* background-color: blueviolet; */
+            
+            
+        }
+        .day,.hour,.minute,.second{
+            
+            
+            width: 60px;
+            height: 60px;
+            /* 文本居中 */
+            text-align: center;
+            line-height: 60px;
+            /* 边框线 */
+            border: solid 1px blue;
+            /* 背景颜色 */
+            background-color: pink;
+            /* position: absolute;
+            left: 20px; */
+            /* 浮动左排列 */
+            float: left;
+            
+            
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="box">
+        <p>开学倒计时!!!</p>
+        <div class="day">0</div>
+        <div class="hour">1</div>
+        <div class="minute">2</div>
+        <div class="second">3</div>
+    </div>
+    <script>
+        // for (i=1;i<=9;i++) {
+        //     for(j=1;j<=i;j++){
+        //         console.log(j + '*' + i + '=' + i*j +'\t' );
+        //     }
+        //     console.log('\n');
+        // }
+        // function name(params) {
+        //     return '你好!'
+        // }
+        // console.log(name());
+        
+        // function getTime(){
+        //     var time = new Date();
+        //     var year = time.getFullYear();//年
+        //     y = year;
+        //     var month = time.getMonth();//月
+        //     mo = month + 1;
+        //     var dates = time.getDate();//日
+        //     d = dates;
+        //     var arr = ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'];
+        //     var day = time.getDay();
+
+        //     var h = time.getHours();//时
+        //     h = h < 10 ? '0' + h : h;
+        //     var m = time.getMinutes();//分
+        //     m = m < 10 ? '0' + m : m;
+        //     var s = time.getSeconds();//秒
+        //     s = s < 10 ? '0' + s : s;
+        //     return y + '年' + mo + '月' + d + '日 ' + arr[day] + ' ' + h + ':' + m +':' + s;
+        // }
+        // console.log(getTime());
+
+        var day = document.querySelector('.day');//天数盒子
+        var hour = document.querySelector('.hour');//小时盒子
+        var minute = document.querySelector('.minute');//分钟盒子
+        var second = document.querySelector('.second');//秒数盒子
+        var inputTime = +new Date('2023-7-6 12:00:00');//返回的是用户输入时间的总毫秒
+        countDown();
+        setInterval(countDown,1000);
+
+        function countDown(){
+            var nowTime = +new Date();//返回现在的时间总毫秒数
+            
+            var times = (inputTime - nowTime) / 1000;//times是剩余时间的总秒数
+            var d = parseInt(times / 60 / 60 / 24);//天
+            //d = d < 10 ? '0' + d : d;
+            day.innerHTML = d + '天';
+            var h = parseInt(times / 60 / 60 % 24);//时
+            h = h < 10 ? '0' + h : h;
+            hour.innerHTML = h + '时';
+            var m = parseInt(times / 60 % 60);//分
+            m = m < 10 ? '0' + m : m;
+            minute.innerHTML = m + '分';
+            var s = parseInt(times % 60);//秒
+            s = s < 10 ? '0' + s : s;
+            second.innerHTML = s + '秒';
+            // return d + '天' + h + '小时' + m + '分钟' + s + '秒' ;
+        }
+        //setInterval();
+        //setInterval(countDown,1000);
+        //console.log(countDown('2023-7-6 12:00:00'));//用户输入的时间
+        //setInterval(countDown,1000);
+        // var date = new Date();
+        // console.log(date);
+        // var a = new Date();//返回现在的时间
+        // console.log(a);
+    </script>
+</body>
+</html>
